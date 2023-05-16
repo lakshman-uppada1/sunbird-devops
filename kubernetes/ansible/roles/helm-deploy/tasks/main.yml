@@ -100,7 +100,7 @@
   when: vars[release_name + '_opa_enabled'] is defined and vars[release_name + '_opa_enabled']
 
 - name: Login to docker
-  shell: "docker login {{ vault_docker_registry_url }} -u {{ vault_docker_registry_user }} -p {{ vault_docker_registry_password }}"
+  shell: "docker login {{ vault_docker_registry_url }} -u {{ vault_docker_registry_user }} -p '{{ vault_docker_registry_password } }' "
   no_log: False
   ignore_errors: yes  
 
