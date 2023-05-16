@@ -39,7 +39,7 @@
     private_key_prefix: "{{ outer_item.0.values_to_pass.keyprefix }}"
     private_key_sign_start: "{{ outer_item.0.values_to_pass.keystart }}"
     private_key_sign_end: "{{ outer_item.0.values_to_pass.keycount if outer_item.0.values_to_pass.keycount > '0' else '1'  }}"
-  when: release_name == "adminutil"
+  when: release_name == "adminutils"
   with_subelements:
     - "{{adminutil_keys_values}}"
     - role_to_run
@@ -50,7 +50,7 @@
   copy:
     dest: "{{ chart_path }}/keys/{{ adminutil_refresh_token_public_key_prefix }}"
     content: "{{ core_vault_sunbird_sso_publickey }}"
-  when: release_name == "adminutil"
+  when: release_name == "adminutils"
 
 - name: Create the token public key file for ML Services
   copy:
@@ -91,12 +91,18 @@
   args:
     chdir: "{{ role_path }}/{{ opa_policies_path }}/{{ release_name }}"
   when: vars[release_name + '_opa_enabled'] is defined and vars[release_name + '_opa_enabled']
+  
 
 - name: Copy the OPA bundle to helm chart directory
   copy:
     src: "{{ role_path }}/{{ opa_policies_path }}/{{ release_name }}/bundle.tar.gz"
     dest: "{{chart_path}}/bundle/"
   when: vars[release_name + '_opa_enabled'] is defined and vars[release_name + '_opa_enabled']
+
+- name: Login to docker
+  shell: "docker login {{ vault_docker_registry_url }} -u {{ vault_docker_registry_user }} -p {{ vault_docker_registry_password }}"
+  no_log: False
+  ignore_errors: yes  
 
 - name: helm install
   shell: helm upgrade --install --atomic --timeout {{helm_install_timeout | d("10m")}} {{ release_name }} {{ chart_path }} -n {{namespace}}
@@ -105,7 +111,7 @@
   include_role:
     name: mount-keys
     tasks_from: "{{item}}"
-  when: release_name == "adminutil"
+  when: release_name == "adminutils"
   with_items:
     - remove-from-helm.yml
     - remove-keys-from-inventory.yml
