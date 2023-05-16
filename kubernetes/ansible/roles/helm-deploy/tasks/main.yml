@@ -99,11 +99,6 @@
     dest: "{{chart_path}}/bundle/"
   when: vars[release_name + '_opa_enabled'] is defined and vars[release_name + '_opa_enabled']
 
-- name: Login to docker
-  shell: "docker login {{ vault_docker_registry_url }} -u {{ vault_docker_registry_user }} -p {{ vault_docker_registry_password | quote }}"
-  no_log: False
-  ignore_errors: yes  
-
 - name: helm install
   shell: helm upgrade --install --atomic --timeout {{helm_install_timeout | d("10m")}} {{ release_name }} {{ chart_path }} -n {{namespace}}
 
