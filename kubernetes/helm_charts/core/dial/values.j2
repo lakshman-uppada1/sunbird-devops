@@ -25,7 +25,7 @@ strategy:
   maxsurge: {{ dial_maxsurge|default('25%') }}
   maxunavailable: {{ dial_maxunavailable|default('25%') }}
 
-{{ dial_liveness_readiness | to_nice_yaml }}
+
 
 autoscaling:
   enabled: {{ dial_autoscaling_enabled | default('false') }}
