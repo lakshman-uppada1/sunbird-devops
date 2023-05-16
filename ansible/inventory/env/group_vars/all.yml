@@ -207,7 +207,7 @@ postgresql_hba_entries:
 proxy_prometheus_admin_creds: "{{ core_vault_proxy_prometheus_admin_creds }}"
 vault_docker_registry_url: "{{core_vault_docker_registry_url}}"
 vault_docker_registry_user: "{{core_vault_docker_registry_user}}"
-vault_docker_registry_password: "{{core_vault_docker_registry_password}}"
+vault_docker_registry_password: "{{core_vault_docker_registry_password | quote }}"
 
 # ADDITIONAL CONFIGURATION
 curl_host: "{{proxy_server_name}}"
