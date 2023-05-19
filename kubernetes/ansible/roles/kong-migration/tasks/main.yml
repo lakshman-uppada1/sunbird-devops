@@ -16,6 +16,7 @@
   docker_container:
     name: kong_migrations
     image: kong:0.14.1
+    network_mode: host
     command: kong migrations up --v
     detach: false
     cleanup: yes
