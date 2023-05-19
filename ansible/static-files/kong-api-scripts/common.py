@@ -1,4 +1,4 @@
-import urllib2, json, logging
+import urllib3, json, logging
 from retry import retry
 
 logging.basicConfig()
