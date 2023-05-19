@@ -2,6 +2,7 @@
   docker_container:
     name: postgres
     image: postgres
+    network_mode: host
     command: 'psql -h {{ kong_postgres_host }} -U {{ kong_postgres_user }} -d {{ kong_postgres_database }} -p 5432 -c "\dt"'
     detach: false
     cleanup: yes
