@@ -9,6 +9,9 @@
 
 - name: Ensure retry is installed
   pip: name=retry
+  
+- name: Ensure urllib2 is installed
+  pip: name=urllib2  
 
 - name: Save api details to json file
   copy: dest=/tmp/kong_apis_temp.json content="{{ kong_apis | to_nice_json}}" mode=0644
