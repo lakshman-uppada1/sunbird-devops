@@ -1,4 +1,4 @@
-import urllib3, argparse, json
+import urllib2, argparse, json
 
 from common import get_apis, json_request, get_api_plugins
 
