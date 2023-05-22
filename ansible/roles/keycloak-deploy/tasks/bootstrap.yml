@@ -2,6 +2,8 @@
 - name: start keycloak service
   debug: msg="starting keycloak"
   notify:
+    - stop service
+    - wait for keycloak to stop
     - start service
     - wait for keycloak to start
   changed_when: true
