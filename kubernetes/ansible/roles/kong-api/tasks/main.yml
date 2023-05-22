@@ -7,8 +7,8 @@
   apt: name=python-pip update_cache=yes
   when: ansible_os_family == 'Debian' and ansible_distribution_version | float > 18
 
-- name: Ensure retry is installed
-  pip: name=retry
+#- name: Ensure retry is installed
+  #pip: name=retry
   
 #- name: Ensure urllib2 is installed
   #pip: name=urllib2  
