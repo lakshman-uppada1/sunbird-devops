@@ -1,5 +1,5 @@
 import urllib2, json, logging
-from retry import retry
+#from retry import retry
 
 logging.basicConfig()
 
