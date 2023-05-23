@@ -95,7 +95,7 @@
   shell: cd /tmp/python-keycloak-0.12.0 &&  python2 setup.py install
   
 - name: Clean up certifi 2023
-  shell: mv /usr/local/lib/python2.7/dist-packages/certifi-2023.5.7-py2.7.egg /usr/local/lib/python2.7/dist-packages/certifi-2023.5.7-py2.7.egg.bkup.1  
+  shell: "mv /usr/local/lib/python2.7/dist-packages/certifi-2023.5.7-py2.7.egg /usr/local/lib/python2.7/dist-packages/certifi-2023.5.7-py2.7.egg.bkup.1"  
   
 - name: Save keycloak vars to json
   template:
