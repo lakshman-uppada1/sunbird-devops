@@ -93,7 +93,10 @@
 # there is NO NEED to force python2 here as default python is already version 2
 - name: Initialize python library to run keycloak bootstrap script
   shell: cd /tmp/python-keycloak-0.12.0 &&  python2 setup.py install
-
+  
+- name: Clean up certifi 2023
+  shell: mv /usr/local/lib/python2.7/dist-packages/certifi-2023.5.7-py2.7.egg /usr/local/lib/python2.7/dist-packages/certifi-2023.5.7-py2.7.egg.bkup.1  
+  
 - name: Save keycloak vars to json
   template:
     src: "keycloak-bootstrap.conf.j2"
