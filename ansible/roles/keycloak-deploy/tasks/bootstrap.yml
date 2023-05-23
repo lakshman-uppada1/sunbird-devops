@@ -117,6 +117,29 @@
     src: "{{ role_path }}/files/python-keycloak-0.12.0/keycloak"
     dest: /tmp
 
+# not sure if this can work, but let's try
+- name: remove any existing certifi-1
+  pip: 
+    executable: /usr/local/bin/pip
+    name: certifi!=2021.10.8
+    state: absent
+
+- name: remove any existing certifi-1
+  pip:
+    executable: /usr/local/bin/pip
+    name: requests!=2.20.0
+    state: absent
+
+- name: try to add certifi 2021.10.8-1
+  pip:
+    executable: /usr/local/bin/pip
+    name: certifi==2021.10.8
+
+- name: try to add request 2.20.0-1
+  pip:
+    executable: /usr/local/bin/pip
+    name: requests==2.20.0
+
 # there is no need to force python2 here as default python is already 2
 - name: Run the keycloak bootstrap script
   shell: cd /tmp/keycloak/ &&  python2 keycloak_main.py /tmp/keycloak-bootstrap.conf.json
