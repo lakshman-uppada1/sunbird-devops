@@ -1,7 +1,7 @@
 ---
 - name: Create Master category
   uri:
-    url: http://localhost:8080/learning-service/framework/v3/category/master/create
+    url: http://{{ private_ingressgateway_ip }}/learning-service/framework/v3/category/master/create
     method: POST
     body_format: json
     body: |-
@@ -57,7 +57,7 @@
 
 - name: Create Framework
   uri:
-    url: http://localhost:8080/learning-service/framework/v3/create
+    url: http://{{ private_ingressgateway_ip }}/learning-service/framework/v3/create
     method: POST
     headers:
       X-Channel-Id: "{{ sunbird_custodian_org_id }}"
@@ -77,7 +77,7 @@
 
 - name: Create framework category
   uri:
-    url: http://localhost:8080/learning-service/framework/v3/category/create?framework={{ default_framework }}
+    url: http://{{ private_ingressgateway_ip }}/learning-service/framework/v3/category/create?framework={{ default_framework }}
     method: POST
     body_format: json
     headers:
@@ -93,7 +93,7 @@
 
 - name: Create framework terms
   uri:
-    url: http://localhost:8080/learning-service/framework/v3/term/create?framework={{ default_framework }}&category={{ item.key }}
+    url: http://{{ private_ingressgateway_ip }}/learning-service/framework/v3/term/create?framework={{ default_framework }}&category={{ item.key }}
     method: POST
     body_format: json
     headers:
@@ -109,7 +109,7 @@
 
 - name: Publish Framework
   uri:
-    url: http://localhost:8080/learning-service/framework/v3/publish/{{ default_framework }}
+    url: http://{{ private_ingressgateway_ip }}/learning-service/framework/v3/publish/{{ default_framework }}
     method: POST
     body_format: json
     headers:
@@ -141,7 +141,7 @@
   block:
   - name: Listing all frameworks
     uri:
-      url: http://localhost:8080/learning-service/framework/v3/list
+      url: http://{{ private_ingressgateway_ip }}/learning-service/framework/v3/list
       method: POST
       body_format: json
       headers:
