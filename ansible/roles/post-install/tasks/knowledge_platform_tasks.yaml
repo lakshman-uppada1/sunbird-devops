@@ -69,7 +69,6 @@
                 "name": "{{ default_framework }}",
                 "description": "{{ default_framework }} Framework",
                 "code": "{{ default_framework }}",
-#                "channels": [{"identifier": "{{ sunbird_custodian_org_id }}"}]
                 "channel": "{{ sunbird_custodian_org_id }}"
               }
           }
