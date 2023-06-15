@@ -91,6 +91,7 @@
   args:
     chdir: "{{ role_path }}/{{ opa_policies_path }}/{{ release_name }}"
   when: vars[release_name + '_opa_enabled'] is defined and vars[release_name + '_opa_enabled']
+  
 
 - name: Copy the OPA bundle to helm chart directory
   copy:
