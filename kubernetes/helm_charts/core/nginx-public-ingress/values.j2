@@ -70,6 +70,10 @@ proxyconfig: |-
     listen 80;
     listen [::]:80;
     server_name {{ proxy_server_name }};
+    if ($host = 'www.dev.oci.diksha.gov.in/') {
+        return 301 https://dev.oci.diksha.gov.in$request_uri;
+    }
+    #13octoberchanges123 
     {#
     custom nginx server config section
     eg:
@@ -98,8 +102,10 @@ proxyconfig: |-
     ssl_ciphers "EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA HIGH !RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS";
   {% endif  %}
     server_name *.{{ proxy_server_name }} {{ proxy_server_name }};
-    #13 October testing123
-    #--------------------
+    if ($host = 'www.dev.oci.diksha.gov.in/') {
+        return 301 https://dev.oci.diksha.gov.in$request_uri;
+    }
+    #13octoberchanges456
     {#
     custom nginx server config section
     eg:
