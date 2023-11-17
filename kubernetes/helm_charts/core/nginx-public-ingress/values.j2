@@ -106,6 +106,10 @@ proxyconfig: |-
         return 301 https://dev.oci.diksha.gov.in$request_uri;
     }
     #13octoberchanges456
+    add_header Referrer-Policy "no-referrer" always;
+    add_header Content-Security-Policy "default-src https:" always;
+    add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
+    #Securityheader17nov2023
     {#
     custom nginx server config section
     eg:
